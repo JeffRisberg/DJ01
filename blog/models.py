@@ -16,3 +16,11 @@ class Post(models.Model):
     text = models.TextField()
     pub_date = models.DateField()
     startups = models.ManyToManyField(Startup)
+
+class Tag(models.Model):
+    name = models.CharField(
+              max_length=31, unique=True)
+    slug = models.SlugField(
+              max_length=31,
+              unique=True,
+              help_text='A label for URL config.')
