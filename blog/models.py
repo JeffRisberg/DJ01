@@ -10,12 +10,26 @@ class Startup(models.Model):
       contact = models.EmailField()
       website = models.URLField()
 
+      class Meta:
+          ordering = ['name']
+          get_latest_by = 'founded_date'
+
+      def __str__(self):
+                return self.name
+
+
 class Post(models.Model):
     title = models.CharField(max_length=63)
     slug = models.SlugField()
     text = models.TextField()
     pub_date = models.DateField()
     startups = models.ManyToManyField(Startup)
+
+    def __str__(self):
+        return "{} on {}".format(
+            self.title,
+            self.pub_date.strftime('%Y-%m-%d'))
+
 
 class Tag(models.Model):
     name = models.CharField(
@@ -24,3 +38,9 @@ class Tag(models.Model):
               max_length=31,
               unique=True,
               help_text='A label for URL config.')
+
+    class Meta:
+          ordering = ['name']
+
+    def __str__(self):
+              return self.name
