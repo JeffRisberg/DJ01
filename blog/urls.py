@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from views import greeting
+from views import homepage
 
 urlpatterns = [
-    url(r'^$', greeting),
+    url(r'^$', homepage),
 ]
