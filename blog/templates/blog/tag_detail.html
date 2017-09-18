@@ -1,0 +1,28 @@
+{% extends parent_template|default:"blog/base_blog.html" %}
+
+{% block title %}
+{{ block.super }} - {{ tag.name|title }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ tag.name|title }}</h2>
+
+{% if tag.post_set.all %}
+<section>
+    <h3>Startup{{ tag.post_set.count|pluralize }}</h3>
+    <p>
+        Tag is associated with
+        {{ tag.post_set.count }}
+        post{{ tag.post_set.count|pluralize }}.
+    </p>
+    <ul>
+        {% for post in tag.post_set.all %}
+        <li><a href="">
+            {{ post.title }}
+        </a></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+
+{% endblock %}
