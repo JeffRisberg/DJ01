@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
-from django.urls import reverse
+from django.core.urlresolvers import reverse
+
 from django.db import models
 
 class Startup(models.Model):
@@ -28,7 +29,7 @@ class Tag(models.Model):
               help_text='A label for URL config.')
 
     def get_absolute_url(self):
-        return reverse('tag_detail',
+        return reverse('blog:tag_detail',
                    kwargs={'slug': self.slug})
 
     class Meta:
